@@ -12,6 +12,6 @@ public class Main {
                 index = i;
             }
         }
-        return index;   
+        return index;
     }
 }

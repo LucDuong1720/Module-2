@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Objects;
 
 public class Product {
     private long id;
@@ -59,12 +60,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", createAt=" + createAt +
-                '}';
+        return String.format("%s %s, price: %s, description: %s, create At: %s",
+                this.getId(), this.getName(), this.getPrice(), this.getDescription(), this.getCreateAt());
     }
 }

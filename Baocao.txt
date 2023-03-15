@@ -1,0 +1,63 @@
+----------------------------------15/03----------------------------------
+Access modifier:
+- Có 4 phạm vi truy cập của Access modifier:
++ private: Phương thức và thuộc tính chỉ truy cập được ở phạm vi class.
++ default: Nếu không khai báo kiểu access modifier nào thì nó mặc định là default. Default chỉ truy cập được ở phạm vi class và package
++ protected: Phương thức và thuộc tính truy cập ở phạm vi một lớp, một package hoặc các lớp con của lớp đó.
++ public: Truy cập ở mọi nơi.
+
+Biến static trong java:
+- Được sử dụng để tham chiếu thuộc tính chung của tất cả các đối tượng.
+VD: Codegym tên trung tâm đào tạo lập trình của các học viên thuộc trung tâm này.
+
+Nested class:
+- Nested class là một lớp được khai báo bên trong một lớp khác. Trong Java, có hai loại nested class là static nested class và non-static (inner) class.
+
++ Static nested class: được khai báo là một lớp tĩnh bên trong một lớp khác và được gắn liền với lớp bên ngoài nó. Nó có thể truy cập các thành viên tĩnh của lớp bên ngoài.	
++ Non-static (inner) class: trực thuộc một đối tượng của lớp bên ngoài, có thể truy xuất đến các thành phần của lớp bên ngoài.
+
+Biến local:
+- Biến local là biến được khai báo bên trong một phương thức hoặc một khối lệnh. Biến local chỉ có thể truy cập được từ bên trong phương thức hoặc khối lệnh đó và bị phá hủy khi phương thức hoặc khối lệnh đó kết thúc.
+VD:
+public class Numbers {
+    public static void main(String[] args) {
+        int x = 5;
+        System.out.println(x);
+    }
+}
+
+Biến instance:
+- Biến instance là biến được khai báo bên trong một lớp, bên ngoài các phương thức, constructor và các block. 
+- Biến instance được tạo ra khi một đối tượng được khởi tạo và bị phá hủy khi đối tượng đó bị phá hủy. 
+- Biến instance có thể truy cập được từ bất kỳ phương thức nào của lớp đó.
+- Biến instance có giá trị mặc định phụ thuộc vào kiểu dữ liệu của nó.
+- Được phép sử dụng "access modifier" khi khai báo biến instance.
+VD:
+public class Numbers {
+    int x = 5;
+    public static void main(String[] args) {
+        Numbers n1 = new Numbers();
+        Numbers n2 = new Numbers();
+        System.out.println(n1.x); // 5
+        System.out.println(n2.x); // 5
+
+Biến static:
+- Biến static là biến được khai báo bên trong một lớp với từ khóa "static", phía bên ngoài các phương thức, constructor và block.
+- Biến static có thể được truy cập từ bất kỳ đối tượng nào của lớp đó và từ các phương thức tĩnh (static) của lớp đó.
+- Biến static được tạo khi chương trình bắt đầu chạy và chỉ bị phá hủy khi chương trình dừng.
+- Các phương thức sử dụng biến static bằng cách gọi tên của nó khi phương thức đó cũng được khai báo với từ khóa "static".
+VD:
+public class Numbers {
+    static int x = 5;
+    public static void main(String[] args) {
+        Numbers n1 = new Numbers();
+        Numbers n2 = new Numbers();
+        System.out.println(n1.x); // 5
+        System.out.println(n2.x); // 5
+
+
+
+
+
+
+

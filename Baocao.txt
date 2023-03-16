@@ -1,5 +1,6 @@
-----------------------------------15/03----------------------------------
+	----------------------------------15/03----------------------------------
 Access modifier:
+Quy định mức độ truy cập đến lớp và các thành phần của lớp.
 - Có 4 phạm vi truy cập của Access modifier:
 + private: Phương thức và thuộc tính chỉ truy cập được ở phạm vi class.
 + default: Nếu không khai báo kiểu access modifier nào thì nó mặc định là default. Default chỉ truy cập được ở phạm vi class và package
@@ -54,6 +55,177 @@ public class Numbers {
         Numbers n2 = new Numbers();
         System.out.println(n1.x); // 5
         System.out.println(n2.x); // 5
+
+----------------------------------16/03----------------------------------
+
+Kế thừa (Inheritance): là cơ chế cho phép lớp con (subclass) được phép kế thừa các thuộc tính và phương thức của lớp cha (superclass), giúp cho việc phát triển phần mềm trở nên dễ dàng hơn bằng cách sử dụng các phương thức và thuộc tính có sẵn.
+- Lớp con kế thừa tất cả thành phần của lớp cha, ngoại trừ các thành phần được khai báo là private.
+- Constructor không được kế thừa
+- Lớp con có thể gọi constructor của lớp cha.
+- Lớp con có thể định nghĩa thêm các thuộc tính và phương thức mới.
+- Java không cho phép đa kế thừa (mộtlớp kế thừa nhiều lớp cha).
+Cú pháp:
+class SubClass extends SupperClass
+{
+//Class body
+}
+
+Một số dạng kế thừa:
+- Single: Một lớp kế thừa từ chỉ một lớp cha
+- Multilevel: Một lớp kế thừa từ một lớp cha, lớp cha lại kế thừa từ lớp khác ở trên nó
+- Hierarchical:Một lớp cha có nhiều lớp con với nhiều level khác nhau
+- Multiple: Một lớp con kế thừa từ nhiều lớp cha
+
+VD:
+class Employee {
+    float salary = 1000;
+}
+ 
+class Dev extends Employee {
+    int bonus = 150;
+}
+ 
+public class InheritanceSample1 {
+    public static void main(String args[]) {
+        Dev p = new Dev();
+        System.out.println("Dev salary is: " + p.salary);
+        System.out.println("Bonus of Dev is: " + p.bonus);
+    }
+}
+
+Override là cơ chế cho phép lớp con định nghĩa lại các phương thức đã được định nghĩa trước đó ở lớp cha.
+Phương thức override ở lớp con có cùng tên, cùng danh sách tham số và kiểu dữ liệu trả về so với phương thức ở lớp cha.
+Phương thức ở lớp con phải có access modifier có level bằng hoặc cao hơn so với phương thức ở lớp cha.
+Từ khoá override được sử dụng để ghi đè phương thức.
+@Override có thể được sử dụng để đánh dấu phương thức ghi đè.
+
+VD:
+class Animal {
+    public void bark() {
+        System.out.println("");
+    }
+}
+ 
+public class Dog extends Animal {
+    public void bark() {
+        System.out.println("Go go");
+    }
+ 
+    public static void main(String args[]) {
+        Dog dog = new Dog();
+        dog.bark();
+    }
+}
+
+Overloading trong java xảy ra nếu một lớp có nhiều phương thức có tên giống nhau nhưng khác nhau về kiểu dữ liệu hoặc số lượng các tham số.
+
+VD:
+class Add{  
+    static int add(int a,int b);
+    static int add(int a,int b,int c)
+}  
+
+Từ khóa final được sử dụng để khai báo một biến hoặc phương thức không thể thay đổi giá trị hoặc bị định nghĩa lại. Nếu một lớp được khai báo là final, nó sẽ không thể được kế thừa.
+VD:
+final double Pi = 3.14533937593;
+
+Đa hình (Polymorphism) cho phép các đối tượng khác nhau thực thi chức năng giống nhau theo những cách khác nhau.
+
+VD:
+class Animal {
+    public void speak() {
+        System.out.println("");
+    }
+}
+ 
+public class Dog extends Animal {
+    public void speak() {
+        System.out.println("Go go");
+    }
+
+public class Cat extends Animal {
+    public void speak() {
+        System.out.println("Meow");
+    }
+
+toString(): muốn đại diện bất kỳ đối tượng nào dưới dạng chuỗi, có thể sử dụng phương thức toString().
+
+class Student{  
+ int rollno;  
+ String name;   
+  
+ Student(int rollno, String name){  
+ this.rollno=rollno;  
+ this.name=name;    
+ }  
+  
+ public static void main(String args[]){  
+   Student s1=new Student(101,"A");  
+   Student s2=new Student(102,"B");  
+     
+   System.out.println(s1);
+   System.out.println(s2); 
+ }  
+} 
+Kết quả:
+Student@7b23ec81
+Student@6acbcfc0
+
+class Student{  
+ int rollno;  
+ String name;   
+  
+ Student(int rollno, String name){  
+ this.rollno=rollno;  
+ this.name=name;   
+ }  
+   
+ public String toString(){ 
+  return rollno+" "+name;  
+ }  
+ public static void main(String args[]){  
+   Student s1=new Student(101,"A");  
+   Student s2=new Student(102,"B");  
+     
+   System.out.println(s1);
+   System.out.println(s2); 
+ }  
+}  
+Kết quả
+101 A
+102 B
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

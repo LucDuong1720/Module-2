@@ -195,9 +195,60 @@ Kết quả
 101 A
 102 B
 
+----------------------------------21/03----------------------------------
 
+Sử dụng Comparable khi ta muốn bản thân đối tượng đó tự so sánh theo một tiêu chí đã định nghĩa trước.
+Khi ta implement Comparable cho một class, bắt buộc ta phải override lại phương thức compareTo(Object obj) cho class đó.
 
+Phương thức compareTo() có kiểu trả về là int và có quy ước:
 
+Giá trị trả về < 0: phần tử hiện tại < phần tử khác
+Giá trị trả về = 0: phần tử hiện tại = phần tử khác
+Giá trị trà về > 0: phần tử hiện tại > phần tử khác
+
+Sử dụng Comparator khi cần so sánh một cách linh hoạt hơn. Comparator tách logic sắp xếp khỏi đối tượng và chứa compare() trong phương thức sort().
+Comparator linh hoạt hơn Comparable ở chỗ, nếu phương thức compareTo() của Comparable chỉ được override lại một lần và chỉ có thể xét được 1 tiêu chí nhất định thì phương thức compare() của Comparator có thể được gọi nhiều lần và định nghĩa ngay tại vị trí cần so sánh để sắp xếp theo các tiêu chí tùy ý.
+
+Khác nhau giữa Comparable và Comparator:
+Comparable:
+- Phải implements giao tiếp Comparable cho lớp đối tượng cần được so sánh.
+- Comparable cung cấp phương thức compareTo() để sắp xếp các phần tử.	
+- Comparable thuộc về java.lang package.
+- Có thể sắp xếp các phần tử của kiểu Comparable bởi phương thức Collections.sort(List).
+
+Comparator:
+- Không phải implements giao tiếp Comparator cho lớp đối tượng cần được so sánh
+- Comparator cung cấp phương thức compare() để sắp xếp các phần tử.
+- Comparator thuộc về java.util package
+- Có thể sắp xếp các phần tử của kiểu Comparator bởi phương thức Collections.sort(List, Comparator).
+
+----------------------------------27/03----------------------------------
+
+Stack (ngăn xếp) là một cấu trúc dữ liệu hoạt động theo nguyên tắc LIFO (Last In First Out), vào sau ra trước. 
+
+push(): lưu giữ một phần tử trên ngăn xếp.
+
+pop(): xóa một phần tử từ ngăn xếp.
+
+peek(): lấy phần tử dữ liệu ở trên cùng của ngăn xếp, mà không xóa phần tử này.
+
+isFull(): kiểm tra xem ngăn xếp đã đầy hay chưa.
+
+isEmpty(): kiểm tra xem ngăn xếp là trống hay không.
+
+Tại mọi thời điểm, chúng ta duy trì một con trỏ tới phần tử dữ liệu vừa được PUSH cuối cùng vào trên ngăn xếp. Vì con trỏ này luôn biểu diễn vị trí trên cùng của ngăn xếp vì thế được đặt tên là top. Con trỏ top cung cấp cho chúng ta giá trị của phần tử trên cùng của ngăn xếp mà không cần phải thực hiện hoạt động xóa ở trên (hoạt động pop).
+
+Queue là một cấu trúc dữ liệu danh sách, trong đó việc thêm và lấy các phần tử được thực hiện theo quy tắc FIFO (Fist-In/First-Out).
+
+enqueue(): thêm (hay lưu trữ) một phần tử vào trong hàng đợi.
+
+dequeue(): xóa một phần tử từ hàng đợi.
+
+peek(): lấy phần tử ở đầu hàng đợi, mà không xóa phần tử này.
+
+isFull(): kiểm tra xem hàng đợi là đầy hay không.
+
+isEmpty(): kiểm tra xem hàng đợi là trống hay hay không.
 
 
 

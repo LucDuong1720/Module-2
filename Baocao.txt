@@ -251,6 +251,24 @@ isFull(): kiểm tra xem hàng đợi là đầy hay không.
 isEmpty(): kiểm tra xem hàng đợi là trống hay hay không.
 
 
+----------------------------------03/04----------------------------------
+Làm thế nào để Set/HashSet đảm bảo các phần tử không trùng lặp:
+Mỗi key trong HashMap là duy nhất, từ đó mỗi phần tử trong HashSet sẽ là 1 key trong HashMap với một value là một hằng số PRESENT.
+Nếu HashMap#put method trả về phần value khi của key khi nó đã tồn tại trước đó hoặc trả về null khi chưa tồn tại. Vì vậy nếu HashMap.put() trả về null nghĩa là thêm phần tử thành công.
+
+import java.util.HashSet;
+
+public class Example {
+  public static void main(String[] args) {
+    HashSet<String> set = new HashSet<String>();
+    set.add("A");
+    set.add("B");
+    set.add("C");
+    set.add("A"); // Thêm phần tử trùng lặp
+    System.out.println(set); // In ra [A, B, C], phần tử trùng lặp sẽ không được thêm vào
+  }
+}
+
 
 
 

@@ -270,6 +270,143 @@ public class Example {
 }
 
 
+----------------------------------04/04----------------------------------
+
+Kĩ thuật đổi tên biến: Giúp cho tên biến có ý nghĩa, dễ đọc và dễ hiểu hơn nhưng không làm ảnh hưởng đến chức năng của nó.
+int x = 10;
+
+int numberOfStudents = 10;
+
+Kĩ thuật đổi tên phương thức: Giúp cho tên phương có ý nghĩa, dễ đọc và dễ hiểu hơn nhưng không làm ảnh hưởng đến chức năng của nó.
+
+public static void show() {
+}
+
+public static void showProductsView() {}
+
+Kĩ thuật tách biến: Là kỹ thuật biến các biểu thức khó hiểu, phức tạp thành các biến nhỏ hơn trong mã nguồn. Việc tách biến có thể giúp cho mã nguồn trở nên dễ đọc hơn, dễ hiểu hơn và dễ bảo trì hơn. Ngoài ra, tách biến cũng có thể giúp cải thiện tính năng và hiệu suất của chương trình.
+
+private static boolean isLeapYear(int year){
+  if(year % 4 == 0){
+    if (year % 100 == 0){
+      if(year % 400 == 0)
+	  return true;
+    } else {
+	return true;
+    }
+  }
+  return false;
+}
+Sau khi xử lý:
+private static boolean isLeapYear(int year){ 
+  boolean isDivisibleBy4 = year % 4 == 0; 
+  if(isDivisibleBy4){
+    boolean isDivisibleBy100 = year % 100 == 0;
+    if (isDivisibleBy100){
+	boolean isDivisibleBy400 = year % 400 == 0;
+	if(isDivisibleBy400) return
+	  true;
+    } else {
+	return true;
+    }
+  }
+  return false;
+}
+
+Kĩ thuật tách hằng: Giúp mang lại ý nghĩa cho các giá trị magic value làm mã nguồn dễ hiểu hơn.
+
+public static boolean isAuthorized(introle){
+if(role == 1){
+return true;
+}
+return false;
+}
+
+public static final int ROLE_ADMIN = 1;
+public static boolean isAuthorized(introle){
+if(role == ROLE_ADMIN){
+return true;
+}
+return false;
+}
+
+Kĩ thuật tách phương thức: Giúp ta tách các phương thức quá dài, quá phức tạp hoặc xử lý quá nhiều tác vụ dẫn đến khó hiểu và khó kiểm soát. Tách phương thức giúp mã nguồn dễ hiểu và dễ kiểm soát hơn.
+public static int getDaysOfMonth(int month, int year){
+  switch (month){
+   case 1:
+   case 3:
+   case 5:
+   case 7:
+   case 8:
+   case 10:
+   case 12:
+	return 31;
+   case 4:
+   case 6:
+   case 9:
+   case 11:
+	return 30;
+   case 2:
+boolean isLeapYear =false; if(year % 4 == 0){
+  if (year % 100 == 0){
+    if(year % 400 == 0)
+    isLeapYear = true;
+  } else {
+    isLeapYear = true;
+  }
+}
+if(isLeapYear){ return
+  29;
+} else {
+  return 28;
+}
+default:
+  return 0;
+}
+}
+Sau khi tách phương thức.
+
+public static int getDaysOfMonth(int month, int year){
+  switch (month){
+   case 1:
+   case 3:
+   case 5:
+   case 7:
+   case 8:
+   case 10:
+   case 12:
+	return 31;
+   case 4:
+   case 6:
+   case 9:
+   case 11:
+	return 30;
+   case 2:
+   boolean isLeapYear =isLeapYear(year);
+   if(isLeapYear){ 
+     return 29;
+   } else {
+     return 28;
+   }
+ default:
+  return 0;
+ }
+}
+
+
+private static boolean isLeapYear(int year){
+  boolean isLeapYear =false; 
+if(year % 4 == 0){
+if (year % 100 == 0){
+if(year % 400 == 0) 
+isLeapYear = true;
+} else {
+isLeapYear = true;
+}
+}
+return isLeapYear;
+}
+
 
 
 

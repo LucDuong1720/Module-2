@@ -125,6 +125,9 @@ public class ProductsView {
                 results.add(products.get(i));
             }
         }
+        if (results.size() == 0) {
+            System.out.println("Không có sản phẩm cần tìm.");
+        }
         showProducts(results);
     }
 

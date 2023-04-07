@@ -1,6 +1,8 @@
-import model.ComparatorById;
-import model.ComparatorByName;
-import model.ComparatorByPrice;
+package view;
+
+import comparator.ComparatorById;
+import comparator.ComparatorByName;
+import comparator.ComparatorByPrice;
 import model.Product;
 
 import java.util.*;

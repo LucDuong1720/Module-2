@@ -412,8 +412,11 @@ return isLeapYear;
 
 4 Tính chất lập trình hướng đối tượng:
 - Tính đa hình (Polymorphism): Đa hình là khả năng của một đối tượng có thể có nhiều hình thái khác nhau. Các đối tượng khác nhau có thể sử dụng cùng một phương thức nhưng với cách thức khác nhau. Tính năng này giúp cho mã có thể được viết ngắn gọn và dễ hiểu hơn.
+Đối tượng khác nhau thực thi chức năng giống nhau theo những cách khác nhau.
 Trong Java, chúng ta sử dụng nạp chồng phương thức (method overloading) và ghi đè phương thức (method overriding) để có tính đa hình.
+
 Nạp chồng (Overloading): Đây là khả năng cho phép một lớp có nhiều thuộc tính, phương thức cùng tên nhưng với các tham số khác nhau về loại cũng như về số lượng. Khi được gọi, dựa vào tham số truyền vào, phương thức tương ứng sẽ được thực hiện.
+
 Ghi đè (Overriding): là hai phương thức cùng tên, cùng tham số, cùng kiểu trả về nhưng thằng con viết lại và dùng theo cách của nó, và xuất hiện ở lớp cha và tiếp tục xuất hiện ở lớp con. Khi dùng override, lúc thực thi, nếu lớp Con không có phương thức riêng, phương thức của lớp Cha sẽ được gọi, ngược lại nếu có, phương thức của lớp Con được gọi.
 
 - Tính đóng gói (Encapsulation): Đóng gói là quá trình ẩn thông tin của một đối tượng, chỉ cung cấp các phương thức public để truy cập. Việc cho phép môi trường bên ngoài tác động lên các dữ liệu nội tại của một đối tượng theo cách nào là hoàn toàn tùy thuộc vào người viết mã. Đây là tính chất đảm bảo sự toàn vẹn, bảo mật của đối tượng.
@@ -422,7 +425,7 @@ Tính đóng gói được thể hiện thông qua phạm vi truy cập (access 
 - Tính trừu tượng (Abstraction): Trừu tượng là tính năng cho phép lập trình viên tập trung vào các đặc tính quan trọng của đối tượng mà không cần quan tâm đến chi tiết bên trong. Tính năng này giúp cho mã có thể được viết ngắn gọn và dễ hiểu hơn, đồng thời giúp cho phát triển phần mềm linh hoạt hơn và dễ dàng bảo trì hơn.
 Trong Java, chúng là sử dụng abstract class và abstract interface để có tính trừu tượng.
 
-- Tính kế thừa (Inheritance): Kế thừa là tính năng cho phép một đối tượng được tạo ra dựa trên một đối tượng hiện có, đối tượng mới kế thừa các thuộc tính và phương thức của đối tượng hiện có. Có thể chia sẻ hay mở rộng các đặc tính sẵn có mà không phải tiến hành định nghĩa lại.
+- Tính kế thừa (Inheritance): Kế thừa là tính năng cho phép một đối tượng được tạo ra dựa trên một đối tượng hiện có, đối tượng mới kế thừa các thuộc tính và phương thức của đối tượng hiện có. Có thể chia sẻ hay mở rộng các đặc tính sẵn có mà không phải tiến hành định nghĩa lại. Đồng thời tái sử dụng mã nguồn.
 
 S.O.L.I.D:
 
@@ -484,21 +487,96 @@ Lệnh throw được sử dụng để tạo ra một ngoại lệ trong một 
 
 Từ khóa throws được dùng với phương thức để gây ra bất cứ checked hay unchecked exception nào và đồng thời nhường công việc xử lý ngoại lệ đó cho người gọi phương thức này.
 
+----------------------------------07/04----------------------------------
 
+Làm việc với file trong Java:
+Package java.io có lớp File cho phép bạn làm việc với các file (tệp). Thường để bắt đầu, cần tạo ra một đối tượng File bằng khởi tạo với tham số đường dẫn
 
+import java.io.File;
+...
+File file = new File("C:\\data\\input-file.txt");
+Một số phương thức lớp File:
+exists() kiểm tra xem file có tồn tại hay không
 
+getName() lấy tên file (input-file.txt)
 
+getParent() lấy đường dẫn thư mục của file
 
+getPath() đường dẫn đầy đủ
 
+isDirectory() kiểm tra xem là thư mục hay không
 
+isFile() kiểm tra xem là file hay không
 
+length() cỡ file (byte)
 
+createNewFile() tạo ra file mới
 
+delete() xóa file
 
+list() lấy tên file, thư mục chứa trong đường dẫn
 
+mkdir() tạo thư mục
 
+renameTo(File dest) đổi tên file
 
+FileReader thực hiện đọc file text.
 
+Các constructor của lớp FileReader:
+FileReader(String file)	Nó mở file với tên file ở dạng string đã cho ở chế độ đọc. Nếu tập tin không tồn tại, nó ném ra ngoại lệ FileNotFoundException.
+FileReader(File file)	Nó mở file với thể hiện của file đã cho ở chế độ đọc. Nếu tập tin không tồn tại, nó ném ra ngoại lệ FileNotFoundException.
 
+Các phương thức của lớp FileReader:
+int read()	Nó được sử dụng để trả về một ký tự trong mẫu ASCII. Nó trả về -1 vào cuối tập tin.
+void close()	Nó được sử dụng để đóng lớp FileReader.
 
+FileWriter thực hiệ nghi chuỗi ký tự ra file text.
+
+Các constructor của lớp FileWriter:
+FileWriter(String file)	Tạo ra một file mới với giá trị truyền vào là tên file.
+FileWriter(File file)	Tạo ra một file mới với giá trị truyền vào là đối tượng file.
+Các phương thức của lớp FileWriter
+
+Phương thức:
+void write(String text)	Nó được sử dụng để ghi string vào FileWriter.
+void write(char c)	Nó được sử dụng để ghi char vào FileWriter.
+void write(char[] c)	Nó được sử dụng để ghi mảng char vào FileWriter.
+void flush()	      Nó được sử dụng để xả dữ liệu của FileWriter.
+void close()	      Nó được sử dụng để đóng FileWriter.
+
+BufferedReader trong java được sử dụng để đọc văn bản từ một input stream dựa trên các ký tự (character stream). Nó có thể được sử dụng để đọc dữ liệu theo dòng (line by line) bằng phương thức readLine().
+
+Các constructor của lớp BufferedReader
+BufferedReader(Reader rd)	      Nó được sử dụng để tạo ra thể hiện của BufferedReader mà sử dụng kích thước mặc định cho một bộ đệm đầu vào.
+BufferedReader(Reader rd, int size)	Nó được sử dụng để tạo ra thể hiện của BufferedReader có sử dụng kích thước quy định cho một bộ đệm đầu vào.
+
+Các phương thức của lớp BufferedReader
+int read()	Nó được sử dụng để đọc ký tự vật duy nhất.
+int read(char[] cbuf, int off, int len)	Nó được sử dụng để đọc các ký tự thành một phần của một mảng.
+boolean markSupported()	Nó được sử dụng để kiểm tra input stream có hỗ trợ các phương thức mark() và reset() không.
+String readLine()	Nó được sử dụng để đọc một dòng văn bản.
+boolean ready()	Nó được sử dụng để kiểm tra liệu các input stream đã sẵn sàng để được đọc.
+long skip(long n)	Nó được sử dụng để bỏ qua n ký tự.
+void reset()	Nó định vị lại stream tại vị trí mà phương thức đánh dấu lần cuối được gọi vào input stream này.
+void mark(int readAheadLimit)	Nó được sử dụng để đánh dấu vị trí hiện tại trong một stream.
+void close()	Nó đóng các dòng đầu vào và giải phóng bất kỳ tài nguyên hệ thống nào liên kết đến stream.
+
+BufferedWriter trong java được sử dụng để cung cấp bộ đệm cho các các thể hiện của lớp Writer. Nó giúp hiệu suất nhanh. Nó thừa kế lớp Writer. Các ký tự đệm được sử dụng để cung cấp việc ghi dữ liệu hiệu quả với các mảng đơn, các ký tự và chuỗi.
+
+Các constructor của lớp BufferedWriter
+BufferedWriter(Writer wrt)			Nó được sử dụng để tạo ra thể hiện của BufferedWriter có sử dụng kích thước mặc định cho một bộ đệm đầu ra.
+BufferedWriter(Writer wrt, int size)	Nó được sử dụng để tạo ra thể hiện của BufferedWriter mà sử dụng kích thước quy định cho một bộ đệm đầu ra.
+
+Các phương thức của lớp BufferedWriter
+void newLine()	Nó được sử dụng để thêm một dòng mới với dấu xuống dòng.
+void write(int c)	Nó được sử dụng để ghi một ký tự duy nhất.
+void write(char[] cbuf, int off, int len)	Nó được sử dụng để ghi một phần của một mảng các ký tự.
+void write(String s, int off, int len)	Nó được sử dụng để ghi một phần của một chuỗi.
+void flush()	Nó được sử dụng để xả BufferedWriter .
+void close()	Nó được sử dụng để đóng BufferedWriter
+
+Phân biệt khi nào dùng FileReader và BufferedWriter:
+FileReader được sử dụng để đọc các ký tự từ tệp tin. Nó có thể đọc dữ liệu một ký tự hoặc một đoạn ký tự từ tệp tin. Nó cung cấp các phương thức để đọc dữ liệu và trả về các giá trị của các ký tự được đọc. FileReader nên được sử dụng khi bạn muốn đọc dữ liệu văn bản từ tệp tin.
+
+BufferedWriter được sử dụng để ghi dữ liệu vào tệp tin. Nó cung cấp các phương thức để ghi dữ liệu theo kiểu văn bản và kiểu nhị phân. BufferedWriter nên được sử dụng khi bạn muốn ghi dữ liệu vào tệp tin.
 

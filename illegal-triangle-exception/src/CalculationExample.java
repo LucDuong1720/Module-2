@@ -4,11 +4,11 @@ public class CalculationExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hãy nhập a: ");
-        int a = scanner.nextInt();
+        int a = Integer.parseInt(scanner.nextLine());
         System.out.println("Hãy nhập b: ");
-        int b = scanner.nextInt();
+        int b = Integer.parseInt(scanner.nextLine());
         System.out.println("Hãy nhập c: ");
-        int c = scanner.nextInt();
+        int c = Integer.parseInt(scanner.nextLine());
 
         CalculationExample calc = new CalculationExample();
         calc.calculate(a,b,c);

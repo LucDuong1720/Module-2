@@ -1,21 +1,23 @@
 package model;
 
+import service.IModel;
+
 import java.util.Date;
 
-public class Order {
+public class Order implements IModel<Order> {
     private long id;
     private String fullName;
-    private String mobile;
+    private String phone;
     private String address;
     private double grandTotal;
     private Date creatAt;
 
     public Order() {}
 
-    public Order(long id, String fullName, String mobile, String address, double grandTotal, Date creatAt) {
+    public Order(long id, String fullName, String phone, String address, double grandTotal, Date creatAt) {
         this.id = id;
         this.fullName = fullName;
-        this.mobile = mobile;
+        this.phone = phone;
         this.address = address;
         this.grandTotal = grandTotal;
         this.creatAt = creatAt;
@@ -37,12 +39,12 @@ public class Order {
         this.fullName = fullName;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getAddress() {
@@ -74,10 +76,23 @@ public class Order {
         return "model.Order{" +
                 "id=" + id +
                 ", fullName='" + fullName + '\'' +
-                ", mobile='" + mobile + '\'' +
+                ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", grandTotal=" + grandTotal +
                 ", creatAt=" + creatAt +
                 '}';
+    }
+
+    @Override
+    public Order parseData(String line) {
+        Order order = new Order();
+        String[] items = line.split(",");
+        order.setId(Long.parseLong(items[0]));
+        order.setFullName(items[1]);
+        order.setPhone(items[2]);
+        order.setAddress(items[3]);
+        order.setGrandTotal(Double.parseDouble(items[4]));
+//        order.setCreatAt(Date);
+        return order;
     }
 }

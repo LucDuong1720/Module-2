@@ -1,21 +1,25 @@
 package model;
 
-public class OrderItem {
+import service.IModel;
+
+public class OrderItem implements IModel<OrderItem> {
     private long id;
     private double price;
     private int quantity;
     private long orderId;
+    private long productId;
     private String productName;
     private double total;
     private double grandTotal;
 
     public OrderItem() {}
 
-    public OrderItem(long id, double price, int quantity, long orderId, String productName, double total, double grandTotal) {
+    public OrderItem(long id, double price, int quantity, long orderId, long productId, String productName, double total, double grandTotal) {
         this.id = id;
         this.price = price;
         this.quantity = quantity;
         this.orderId = orderId;
+        this.productId = productId;
         this.productName = productName;
         this.total = total;
         this.grandTotal = grandTotal;
@@ -77,6 +81,14 @@ public class OrderItem {
         this.grandTotal = grandTotal;
     }
 
+    public long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(long productId) {
+        this.productId = productId;
+    }
+
     @Override
     public String toString() {
         return "OrderItem{" +
@@ -84,9 +96,26 @@ public class OrderItem {
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", orderId=" + orderId +
+                ", productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", total=" + total +
                 ", grandTotal=" + grandTotal +
                 '}';
+    }
+
+    @Override
+    public OrderItem parseData(String line) {
+        String[] items = line.split(",");
+        OrderItem orderItem = new OrderItem();
+        orderItem.setId(Long.parseLong(items[0]));
+        orderItem.setPrice(Double.parseDouble(items[1]));
+        orderItem.setQuantity(Integer.parseInt(items[2]));
+        orderItem.setOrderId(Long.parseLong(items[3]));
+        orderItem.setProductId(Long.parseLong(items[4]));
+        orderItem.setProductName(items[5]);
+        orderItem.setTotal(Double.parseDouble(items[6]));
+        orderItem.setGrandTotal(Double.parseDouble(items[7]));
+
+        return orderItem;
     }
 }

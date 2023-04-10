@@ -1,8 +1,8 @@
 package model;
-
+import service.IModel;
 import java.util.Date;
 
-public class Product {
+public class Product implements IModel<Product> {
     private long id;
     private String name;
     private String brand;
@@ -112,5 +112,21 @@ public class Product {
                 ", creatAt=" + creatAt +
                 ", updateAt=" + updateAt +
                 '}';
+    }
+    @Override
+    public Product parseData(String line) {
+        String[] items = line.split(",");
+        Product product = new Product();
+        product.setId(Long.parseLong(items[0]));
+        product.setName(items[1]);
+        product.setBrand(items[2]);
+        product.setOrigin(items[3]);
+        product.setCapacity(items[4]);
+        product.setQuantity(Integer.parseInt(items[5]));
+        product.setPrice(Double.parseDouble(items[6]));
+        product.setCreatAt(null);
+        product.setUpdateAt(null);
+
+        return product;
     }
 }

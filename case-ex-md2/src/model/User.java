@@ -1,8 +1,10 @@
 package model;
 
+import service.IModel;
+
 import java.util.Date;
 
-public class User {
+public class User implements IModel<User> {
     private long id;
     private String nameAccount;
     private String password;
@@ -101,5 +103,21 @@ public class User {
                 ", dateCreat=" + dateCreat +
                 ", role=" + role +
                 '}';
+    }
+
+    @Override
+    public User parseData(String line) {
+        User user = new User();
+        String[] items = line.split(",");
+        user.setId(Long.parseLong(items[0]));
+        user.setNameAccount(items[1]);
+        user.setPassword(items[2]);
+        user.setNameUser(items[3]);
+        user.setPhone(items[4]);
+        user.setAddress(items[5]);
+//        user.setDateCreat(Date);
+//        user.role = Role.parseRole;
+
+        return user;
     }
 }

@@ -1,5 +1,7 @@
 package model;
 import service.IModel;
+import utils.DateUtils;
+
 import java.util.Date;
 
 public class Product implements IModel<Product> {
@@ -101,17 +103,8 @@ public class Product implements IModel<Product> {
 
     @Override
     public String toString() {
-        return "model.Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", brand='" + brand + '\'' +
-                ", origin='" + origin + '\'' +
-                ", capacity=" + capacity +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                ", creatAt=" + creatAt +
-                ", updateAt=" + updateAt +
-                '}';
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s", this.getId(), this.getName(), this.getBrand(), this.getOrigin(),this.getCapacity(),
+                this.getQuantity(), this.getPrice(), this.getCreatAt(), this.getUpdateAt());
     }
     @Override
     public Product parseData(String line) {
@@ -124,8 +117,11 @@ public class Product implements IModel<Product> {
         product.setCapacity(items[4]);
         product.setQuantity(Integer.parseInt(items[5]));
         product.setPrice(Double.parseDouble(items[6]));
-        product.setCreatAt(null);
-        product.setUpdateAt(null);
+        product.setCreatAt(DateUtils.parseDate(items[7]));
+        String temp = items[8];
+        product.setUpdateAt(DateUtils.parseDate(null));
+        if (temp != null && !temp.equals("null"))
+            product.setUpdateAt(DateUtils.parseDate(temp));
 
         return product;
     }

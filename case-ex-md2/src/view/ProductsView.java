@@ -4,12 +4,56 @@ import comparator.ComparatorById;
 import comparator.ComparatorByName;
 import comparator.ComparatorByPrice;
 import model.Product;
+import service.IProductService;
+import service.ProductService;
+import utils.DateUtils;
 
 import java.util.*;
 
 public class ProductsView {
+    private IProductService productService;
     List<Product> products;
     Scanner scanner = new Scanner(System.in);
+    public void ProductView() {
+        productService = new ProductService();
+    }
+
+    public void showProducts() {
+        System.out.println("═════════════════════════════════════════════════════════════════════════════ DANH SÁCH SẢN PHẨM ═════════════════════════════════════════════════════════════════════════════");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-5s%-9s | %-16s%-16s | %-10s%-14s | %-4s%-14s | %-8s%-12s | %-4s%-18s | %-2s%-20s | %-2s%-20s | %-2s%-20s |\n",
+                "", "Id",
+                "", "Tên sản phẩm",
+                "", "Thương hiệu",
+                "", "Nguồn gốc",
+                "", "Dung tích",
+                "", "Số lượng",
+                "", "Giá",
+                "", "Thời gian tạo",
+                "", "Thời gian cập nhật"
+        );
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        for (Product product : products) {
+            System.out.printf("| %-5s%-9s | %-16s%-16s | %-10s%-14s | %-4s%-14s | %-8s%-12s | %-4s%-18s | %-2s%-20s | %-2s%-20s | %-2s%-20s |\n",
+                    "", product.getId(),
+                    "", product.getName(),
+                    "", product.getBrand(),
+                    "", product.getOrigin(),
+                    "", product.getCapacity(),
+                    "", product.getQuantity(),
+                    "", product.getPrice(),
+                    "", DateUtils.parseDate(String.valueOf(product.getCreatAt())),
+                    "", product.getUpdatedAt() == null ? "" : InstantUtils.instantToString(product.getUpdatedAt())
+            );
+        }
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        if (option != InputOption.UPDATE && option != InputOption.DELETE && option != InputOption.FIND) {
+            AppUtils.pressAnyKeyToContinue();
+        }
+    }
+
+
+
     public ProductsView() {
         products = new ArrayList<>();
 //        long id, String name, String brand, String origin, String capacity, int quantity, long price, Date creatAt, Date
@@ -35,26 +79,26 @@ public class ProductsView {
         products.add(new Product(10L, "Gucci Flora Gorgeous Jasmin", "Gucci", "Pháp",
                 "50ml", 12, 2700000, new Date(), new Date()));
     }
-    public void showProducts() {
-        System.out.printf("%5s | %30s | %10s | %10s | %10s | %10s | %10s | %35s | %35s\n ",
-                "ID", "Name", "Brand", "Origin", "Capacity", "Quantity", "Price", "Date Created", "Date Update");
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            System.out.printf("%5s | %30s | %10s | %10s | %10s | %10s | %10s | %35s | %35s\n ",
-                    product.getId(), product.getName(), product.getBrand(), product.getOrigin(), product.getCapacity(), product.getQuantity(),
-                    product.getPrice(), product.getCreatAt(), product.getUpdateAt());
-        }
-    }
-    public void showProducts(List<Product> products) {
-        System.out.printf("%5s | %30s | %10s | %10s | %10s | %10s | %10s | %35s | %35s\n ",
-                "ID", "Name", "Brand", "Origin", "Capacity", "Quantity", "Price", "Date Created", "Date Update");
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            System.out.printf("%5s | %30s | %10s | %10s | %10s | %10s | %10s | %35s | %35s\n ",
-                    product.getId(), product.getName(), product.getBrand(), product.getOrigin(), product.getCapacity(), product.getQuantity(),
-                    product.getPrice(), product.getCreatAt(), product.getUpdateAt());
-        }
-    }
+//    public void showProducts() {
+//        System.out.printf("%5s | %30s | %10s | %10s | %10s | %10s | %10s | %35s | %35s\n ",
+//                "ID", "Name", "Brand", "Origin", "Capacity", "Quantity", "Price", "Date Created", "Date Update");
+//        for (int i = 0; i < products.size(); i++) {
+//            Product product = products.get(i);
+//            System.out.printf("%5s | %30s | %10s | %10s | %10s | %10s | %10s | %35s | %35s\n ",
+//                    product.getId(), product.getName(), product.getBrand(), product.getOrigin(), product.getCapacity(), product.getQuantity(),
+//                    product.getPrice(), product.getCreatAt(), product.getUpdateAt());
+//        }
+//    }
+//    public void showProducts(List<Product> products) {
+//        System.out.printf("%5s | %30s | %10s | %10s | %10s | %10s | %10s | %35s | %35s\n ",
+//                "ID", "Name", "Brand", "Origin", "Capacity", "Quantity", "Price", "Date Created", "Date Update");
+//        for (int i = 0; i < products.size(); i++) {
+//            Product product = products.get(i);
+//            System.out.printf("%5s | %30s | %10s | %10s | %10s | %10s | %10s | %35s | %35s\n ",
+//                    product.getId(), product.getName(), product.getBrand(), product.getOrigin(), product.getCapacity(), product.getQuantity(),
+//                    product.getPrice(), product.getCreatAt(), product.getUpdateAt());
+//        }
+//    }
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -118,19 +162,19 @@ public class ProductsView {
     }
 
     private void searchByName() {
-        System.out.println("Nhập tên sản phẩm cần tìm: ");
-        String name = scanner.nextLine();
-
-        List<Product> results = new ArrayList<>();
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getName().contains(name)) {
-                results.add(products.get(i));
-            }
-        }
-        if (results.size() == 0) {
-            System.out.println("Không có sản phẩm cần tìm.");
-        }
-        showProducts(results);
+//        System.out.println("Nhập tên sản phẩm cần tìm: ");
+//        String name = scanner.nextLine();
+//
+//        List<Product> results = new ArrayList<>();
+//        for (int i = 0; i < products.size(); i++) {
+//            if (products.get(i).getName().contains(name)) {
+//                results.add(products.get(i));
+//            }
+//        }
+//        if (results.size() == 0) {
+//            System.out.println("Không có sản phẩm cần tìm.");
+//        }
+//        showProducts(results);
     }
 
     private void sortByName() {

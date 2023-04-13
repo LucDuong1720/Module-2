@@ -1,14 +1,12 @@
 package service;
 
 import model.Product;
+import utils.DateUtils;
 import utils.FileUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
     public final String pathProduct = "./data/products.csv";
 
     @Override
@@ -20,9 +18,9 @@ public class ProductService implements IProductService{
     public void addProduct(Product product) {
         List<Product> products = getAllProdutcs();
         long lastId = 1;
-        if(products.size()!=0){
-            Product lastCustomer = products.get(products.size()-1);
-            lastId = lastCustomer.getId()+1;
+        if (products.size() != 0) {
+            Product lastProduct = products.get(products.size() - 1);
+            lastId = lastProduct.getId() + 1;
         }
         product.setId(lastId);
 
@@ -53,6 +51,7 @@ public class ProductService implements IProductService{
                 products.get(i).setCapacity(product.getCapacity());
                 products.get(i).setQuantity(product.getQuantity());
                 products.get(i).setPrice(product.getPrice());
+                products.get(i).setCreatAt(DateUtils.parseDate(String.valueOf(new Date())));
             }
         }
         FileUtils.writeDataToFile(pathProduct, products);
@@ -66,9 +65,9 @@ public class ProductService implements IProductService{
             public int compare(Product o1, Product o2) {
                 if (o1.getPrice() > o2.getPrice()) {
                     return 1;
-                } else if (o1.getId() == o2.getId()) {
+                } else if (o1.getPrice() == o2.getPrice()) {
                     return 0;
-                }else {
+                } else {
                     return -1;
                 }
             }
@@ -88,8 +87,78 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public void searchByName() {
+    public void sortByQuantity() {
+        List<Product> productList = getAllProdutcs();
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                if (o1.getQuantity() > o2.getQuantity()) {
+                    return 1;
+                } else if (o1.getQuantity() == o2.getQuantity()) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            }
+        });
+        FileUtils.writeDataToFile(pathProduct, productList);
 
+    }
+
+    @Override
+    public List<Product> findByName(String value) {
+        List<Product> products = getAllProdutcs();
+        List<Product> productsFind = new ArrayList<>();
+        for (Product item : products) {
+            if ((item.getName().toUpperCase()).contains(value.toUpperCase())) {
+                productsFind.add(item);
+            }
+        }
+        if (productsFind.isEmpty()) {
+            return null;
+        }
+        return productsFind;
+    }
+
+    @Override
+    public Product findById(long id) {
+        List<Product> products = getAllProdutcs();
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Product> findByBrand(String value) {
+        List<Product> products = getAllProdutcs();
+        List<Product> productsFind = new ArrayList<>();
+        for (Product item : products) {
+            if ((item.getBrand().toUpperCase()).contains(value.toUpperCase())) {
+                productsFind.add(item);
+            }
+        }
+        if (productsFind.isEmpty()) {
+            return null;
+        }
+        return productsFind;
+    }
+
+    @Override
+    public List<Product> findByOrigin(String value) {
+        List<Product> products = getAllProdutcs();
+        List<Product> productsFind = new ArrayList<>();
+        for (Product item : products) {
+            if ((item.getOrigin().toUpperCase()).contains(value.toUpperCase())) {
+                productsFind.add(item);
+            }
+        }
+        if (productsFind.isEmpty()) {
+            return null;
+        }
+        return productsFind;
     }
 
 }

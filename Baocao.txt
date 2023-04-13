@@ -1,4 +1,4 @@
-	----------------------------------15/03----------------------------------
+.	----------------------------------15/03----------------------------------
 Access modifier:
 Quy định mức độ truy cập đến lớp và các thành phần của lớp.
 - Có 4 phạm vi truy cập của Access modifier:
@@ -580,3 +580,15 @@ FileReader được sử dụng để đọc các ký tự từ tệp tin. Nó c
 
 BufferedWriter được sử dụng để ghi dữ liệu vào tệp tin. Nó cung cấp các phương thức để ghi dữ liệu theo kiểu văn bản và kiểu nhị phân. BufferedWriter nên được sử dụng khi bạn muốn ghi dữ liệu vào tệp tin.
 
+----------------------------------12/04----------------------------------
+
+Multithreading nghĩa là có nhiều thread thực thi cùng lúc trong một chương trình nhầm tối ưu tài nguyên của CPU, tăng tốc độ xử lý và trải nghiệm người dùng. 
+
+Multitasking: Một máy tính có thể thực thi cùng một lúc nhiều chương trình khác nhau. Hệ thống sẽ điều khiển mỗi CPU luân phiên thực thi mỗi chương trình trong một khoảng thời sau đó chuyển sang thực thi các chương trình khác. Chúng ta không còn giả định được chương trình của mình chiếm toàn bộ thời gian CPU mà nó chỉ chiếm một khoảng được hệ thống cấp cho. 
+
+Thread: là đơn vị nhỏ nhất của mã thực thi mà đoạn mã đó thực hiện một nhiệm vụ cụ thể.
+Một ứng dụng có thể được chia nhỏ thành nhiều nhiệm vụ và mỗi nhiệm vụ có thể được giao cho một thread.
+Nhiều thread cùng thực hiện đồng thời được gọi là đa luồng (Multi-Thread)
+
+Đồng bộ hoá chính là việc sắp xếp thứ tự các thread khi truy xuất vào cùng đối tượng sao cho không có sự xung đột dữ liệu.
+Để đảm bảo rằng một nguồn tài nguyên chia sẻ được sử dụng bởi một thread tại một thời điểm, chúng ta sử dụng đồng bộ hoá.

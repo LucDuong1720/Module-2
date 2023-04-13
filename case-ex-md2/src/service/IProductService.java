@@ -11,5 +11,10 @@ public interface IProductService {
     void updateProductById(long id, Product product);
     void sortByPrice();
     void sortByName();
-    void searchByName();
+    void sortByQuantity();
+
+    List<Product> findByName(String value);
+    Product findById(long id);
+    List<Product> findByBrand(String value);
+    List<Product> findByOrigin(String value);
 }
